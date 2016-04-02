@@ -9,9 +9,11 @@ import rx.Subscriber;
  */
 public class BaseSubscriber<T> extends Subscriber<T> {
     private SubscriberListener<T> subscriberOnNextListener;
+    private int flag = -1;
 
-    public BaseSubscriber(SubscriberListener<T> subscriberOnNextListener){
+    public BaseSubscriber(SubscriberListener<T> subscriberOnNextListener,int flag){
         this.subscriberOnNextListener = subscriberOnNextListener;
+        this.flag = flag;
     }
 
     @Override
@@ -21,6 +23,7 @@ public class BaseSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onCompleted() {
+
         subscriberOnNextListener.onComplete();
     }
 
@@ -31,6 +34,6 @@ public class BaseSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onNext(T t) {
-        subscriberOnNextListener.onNext(t);
+            subscriberOnNextListener.onNext(t,flag);
     }
 }

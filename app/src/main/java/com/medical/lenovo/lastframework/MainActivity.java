@@ -226,13 +226,19 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
 
     //
     public void queryWeather7(){
-        HttpMethods.getInstance().getWeather3(new BaseSubscriber<Weather2>(this), IP);
+        HttpMethods.getInstance().getWeather3(new BaseSubscriber<Weather2>(this,1), IP);
     }
 
     @Override
-    public void onNext(Object o) {
-        if (o instanceof Weather2){
-            tvShow.setText("hhhhhdddddddddd");
+    public void onNext(Object o,int flag) {
+//        if (o instanceof Weather2){
+//            tvShow.setText("hhhhhdddddddddd");
+//        }
+        switch (flag){
+            case 1:
+                break;
+            default:
+                break;
         }
     }
 
@@ -252,12 +258,12 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
     }
 
     public void queryWeather8(){
-        HttpMethods.getInstance().getServiceFactory().getWeather5(new BaseSubscriber<Weather2>(this), IP);
+        HttpMethods.getInstance().getServiceFactory().getWeather5(new BaseSubscriber<Weather2>(this,1), IP);
     }
 
     public void queryWeather9(){
 
-        Subscription subscription =  HttpMethods.getInstance().getServiceFactory().getWeather6(new BaseSubscriber<Weather2>(this), IP);
+        Subscription subscription =  HttpMethods.getInstance().getServiceFactory().getWeather6(new BaseSubscriber<Weather2>(this,1), IP);
         mCompositeSubscription.add(subscription);
     }
 
