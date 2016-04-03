@@ -10,6 +10,14 @@ import rx.Subscription;
 
 /**
  * Created by lenovo on 2016/3/30.
+ *  o.创建Observable操作符
+ *      1.Create — 通过调用观察者的方法从头创建一个Observable
+ *      2.Defer — 在观察者订阅之前不创建这个Observable，为每一个观察者创建一个新的Observable
+ *      3.Interval — 创建一个定时发射整数序列的Observable
+ *      4.Just — 将对象或者对象集合转换为一个会发射这些对象的Observable
+ *      5.Range — 创建发射指定范围的整数序列的Observable
+ *      6.Repeat — 创建重复发射特定的数据或数据序列的Observable
+ *      7.Timer — 创建在一个指定的延迟之后发射单个数据的Observable
  *  一.过滤
  *      1.filter 过滤结果集中不想要的值
  *      2.take 获取整个序列中开头的几个序列
@@ -66,6 +74,32 @@ import rx.Subscription;
  *                   return formatter.format(new Date(appInfo.getLastUpdateTime()));
  *               }
  *           });
+ *      8.buffer 将源Observable变换一个新的Observable，这个新的Observable每次发射一组列表值而不是一个一个发射
+ *      9.window 和buffer()很像，但是它发射的是Observable而不是列表
+ *      10.cast 它是map()操作符的特殊版本。它将源Observable中的每一项数据都转换为新的类型，把它变成了不同的Class
+ *  三.组合
+ *      1.merge merge()方法将帮助你把两个甚至更多的Observables合并到他们发射的数据项里
+ *      2.zip 多从个Observables接收数据，处理它们，然后将它们合并成一个新的可观测序列来使用
+ *      3.join 函数基于时间窗口将两个Observables发射的数据结合在一起
+ *      4.combineLatest combineLatest()作用于最近发射的数据项：如果Observable1发射了A并且Observable2发射了B和C，
+ *          combineLatest()将会分组处理AB和AC
+ *      5.and,then和when 还有一些zip()满足不了的场景。如复杂的架构，或者是仅仅为了个人爱好，你可以使用And/Then/When解决方案
+ *      6.concat 依次将多个数据源释放到同一个地方
+ *          example:
+ *          Observable.concat(Observable.just("a"), Observable.just("b"), Observable.just("c")).subscribe(
+ *               new Observer<String>() {
+ *                   @Override public void onCompleted() {
+ *                       Log.e("test---onCompleted ", "onCompleted");
+ *                   }
+ *                   @Override public void onError(Throwable e) {
+ *                   }
+ *                   @Override public void onNext(String s) {
+ *                       Log.e("test---onNext ", "onNext s : " + s);
+ *                   }
+ *                   });
+ *      7.switch 将一个发射多个Observables的Observable转换成另一个单独的Observable，后者发射那些Observables最近发射的数据项。
+ *      8.startWith 正如concat()向发射数据的Observable追加数据那样，在Observable开始发射他们的数据之前，
+ *          startWith()通过传递一个参数来先发射一个数据序列。
  */
 public class ServiceFactory extends BaseServiceFactory {
     private ApiService apiService;

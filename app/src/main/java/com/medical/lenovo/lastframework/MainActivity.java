@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.medical.lenovo.lastframework.base.BaseAcitivty;
+import com.medical.lenovo.lastframework.base.BaseSubscriber;
 import com.medical.lenovo.lastframework.event.UserEvent;
 import com.medical.lenovo.lastframework.eventbus.RxBus;
 import com.medical.lenovo.lastframework.eventbus.RxBusEx;
@@ -11,7 +12,6 @@ import com.medical.lenovo.lastframework.model.HttpResult;
 import com.medical.lenovo.lastframework.model.Weather;
 import com.medical.lenovo.lastframework.model.Weather2;
 import com.medical.lenovo.lastframework.network.ApiService;
-import com.medical.lenovo.lastframework.base.BaseSubscriber;
 import com.medical.lenovo.lastframework.network.HttpMethods;
 import com.medical.lenovo.lastframework.network.OverWeightFunc;
 import com.medical.lenovo.lastframework.network.SubscriberListener;
@@ -19,6 +19,8 @@ import com.medical.lenovo.lastframework.network.SubscriberListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,7 +39,9 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
 
     private static final String BASE_URL = "http://ip.taobao.com/";
     private static final String IP = "63.223.108.42";
-    private TextView tvShow;
+    @Bind(R.id.tvShow)
+    TextView tvShow;
+    //    private TextView tvShow;
     private Observable<String> observable;
     private Subscription rxSubscription;
 
@@ -45,6 +49,7 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
 
         _initView();
@@ -58,12 +63,12 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
         testOverweight();
     }
 
-    public void _initView(){
+    public void _initView() {
 
-        tvShow = (TextView)findViewById(R.id.tvShow);
+//        tvShow = (TextView)findViewById(R.id.tvShow);
     }
 
-    public void queryWeather(){
+    public void queryWeather() {
         //.创建retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
@@ -97,7 +102,7 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
     }
 
 
-    public void queryWeather2(){
+    public void queryWeather2() {
 
         //.创建retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
@@ -132,7 +137,7 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
     }
 
 
-    public void queryWeather3(){
+    public void queryWeather3() {
         Subscriber<Weather> subscriber = new Subscriber<Weather>() {
             @Override
             public void onCompleted() {
@@ -154,7 +159,7 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
         HttpMethods.getInstance().getWeather(subscriber, IP);
     }
 
-    public void queryWeather4(){
+    public void queryWeather4() {
 
         Subscriber<HttpResult<Weather>> subscriber = new Subscriber<HttpResult<Weather>>() {
             @Override
@@ -177,12 +182,12 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
         HttpMethods.getInstance().getWeather2(subscriber, IP);
     }
 
-    public void queryWeather5(){
+    public void queryWeather5() {
 
         Subscriber<Weather2> subscriber = new Subscriber<Weather2>() {
             @Override
             public void onCompleted() {
-                tvShow.setText("complete" );
+                tvShow.setText("complete");
             }
 
             @Override
@@ -193,7 +198,7 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
             @Override
             public void onNext(Weather2 weather) {
                 String code = weather.getIp();
-                tvShow.setText("hhhhh" );
+                tvShow.setText("hhhhh");
             }
         };
 
@@ -201,12 +206,12 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
     }
 
     //此方法不可行
-    public void queryWeather6(){
+    public void queryWeather6() {
 
         Subscriber<Weather2> subscriber = new Subscriber<Weather2>() {
             @Override
             public void onCompleted() {
-                tvShow.setText("complete" );
+                tvShow.setText("complete");
             }
 
             @Override
@@ -217,7 +222,7 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
             @Override
             public void onNext(Weather2 weather) {
                 String code = weather.getIp();
-                tvShow.setText("hhhhh" );
+                tvShow.setText("hhhhh");
             }
         };
 
@@ -225,16 +230,16 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
     }
 
     //
-    public void queryWeather7(){
-        HttpMethods.getInstance().getWeather3(new BaseSubscriber<Weather2>(this,1), IP);
+    public void queryWeather7() {
+        HttpMethods.getInstance().getWeather3(new BaseSubscriber<Weather2>(this, 1), IP);
     }
 
     @Override
-    public void onNext(Object o,int flag) {
+    public void onNext(Object o, int flag) {
 //        if (o instanceof Weather2){
 //            tvShow.setText("hhhhhdddddddddd");
 //        }
-        switch (flag){
+        switch (flag) {
             case 1:
                 break;
             default:
@@ -257,21 +262,21 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
 
     }
 
-    public void queryWeather8(){
-        HttpMethods.getInstance().getServiceFactory().getWeather5(new BaseSubscriber<Weather2>(this,1), IP);
+    public void queryWeather8() {
+        HttpMethods.getInstance().getServiceFactory().getWeather5(new BaseSubscriber<Weather2>(this, 1), IP);
     }
 
-    public void queryWeather9(){
+    public void queryWeather9() {
 
-        Subscription subscription =  HttpMethods.getInstance().getServiceFactory().getWeather6(new BaseSubscriber<Weather2>(this,1), IP);
+        Subscription subscription = HttpMethods.getInstance().getServiceFactory().getWeather6(new BaseSubscriber<Weather2>(this, 1), IP);
         mCompositeSubscription.add(subscription);
     }
 
     //--------------------------------eventbus------------------------------------
 
 
-    public void testEventBus(){
-        Observable<String> observable = RxBusEx.getInstance().register("tag1",String.class);
+    public void testEventBus() {
+        Observable<String> observable = RxBusEx.getInstance().register("tag1", String.class);
         observable.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
                     @Override
@@ -282,7 +287,7 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
     }
 
 
-    public void testEventBus1(){
+    public void testEventBus1() {
 
         // rxSubscription是一个Subscription的全局变量，这段代码可以在onCreate/onStart等生命周期内
         rxSubscription = RxBus.getDefault().toObserverable(UserEvent.class)
@@ -303,10 +308,10 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
     }
 
     //------------------------------耗时任务-----------------------------------------
-    public void testOverweight(){
+    public void testOverweight() {
         Subscriber<Weather2> subscriber = new Subscriber<Weather2>() {
             @Override
-            public void onCompleted(){
+            public void onCompleted() {
             }
 
             @Override
