@@ -100,6 +100,18 @@ import rx.Subscription;
  *      7.switch 将一个发射多个Observables的Observable转换成另一个单独的Observable，后者发射那些Observables最近发射的数据项。
  *      8.startWith 正如concat()向发射数据的Observable追加数据那样，在Observable开始发射他们的数据之前，
  *          startWith()通过传递一个参数来先发射一个数据序列。
+ *  四.辅助函数
+ *      1.repeat 假如你想对一个Observable重复发射三次数据 repeat(3)
+ *      2.delay 延时数据的发射 delaySubscription 延时注册Subscriber
+ *      3.all 根据一个函数对源Observable发射的所有数据进行判断，最终返回的结果就是这个判断结果
+ *      4.amb 可以将至多9个Observable结合起来，让他们竞争。哪个Observable首先发射了数据（包括onError和onComplete)就会继续发射这个Observable的数据，
+ *          其他的Observable所发射的数据都会别丢弃。
+ *      5.contains 用来判断源Observable所发射的数据是否包含某一个数据，如果包含会返回true，如果源Observable已经结束了却还没有发射这个数据则返回false
+ *      6.isEmpty 用来判断源Observable是否发射过数据，如果发射过就会返回false，如果源Observable已经结束了却还没有发射这个数据则返回true。
+ *      7.defaultIfEmpty 判断源Observable是否发射数据，如果源Observable发射了数据则正常发射这些数据，如果没有则发射一个默认的数据
+ *      8.sequenceEqual 判断两个Observable发射的数据序列是否相同（发射的数据相同，数据的序列相同，结束的状态相同），如果相同返回true，否则返回false
+ *      9.reduce 操作符应用一个函数接收Observable发射的数据和函数的计算结果作为下次计算的参数，输出最后的结果。
+ *
  */
 public class ServiceFactory extends BaseServiceFactory {
     private ApiService apiService;

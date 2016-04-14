@@ -293,7 +293,9 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
         rxSubscription = RxBus.getDefault().toObserverable(UserEvent.class)
                 .subscribe(new Action1<UserEvent>() {
                                @Override
-                               public void call(UserEvent userEvent) {
+                               public void call(UserEvent userEvent)
+
+                               {
                                    tvShow.setText(userEvent.getName());
                                }
                            },

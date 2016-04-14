@@ -12,8 +12,7 @@ import rx.schedulers.Schedulers;
 public class BaseServiceFactory {
 
     protected <T> Subscription subscribe(Observable<T> observable, Subscriber<T> subscriber){
-        return observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        return observable.compose(this.<T>applySchedulers())
                 .subscribe(subscriber);
     }
 
@@ -21,8 +20,20 @@ public class BaseServiceFactory {
         OverWeightFunc<T> overWeightFunc = new OverWeightFunc<T>();
         overWeightFunc.registerIOverWeight(overWeight);
         return Observable.defer(overWeightFunc)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(this.<T>applySchedulers())
                 .subscribe(subscriber);
+    }
+
+    final Observable.Transformer schedulersTransformer = new Observable.Transformer(){
+
+        @Override
+        public Object call(Object observable) {
+            return ((Observable)observable).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+        }
+    };
+
+    private <T> Observable.Transformer<T, T> applySchedulers() {
+        return (Observable.Transformer<T, T>) schedulersTransformer;
     }
 }

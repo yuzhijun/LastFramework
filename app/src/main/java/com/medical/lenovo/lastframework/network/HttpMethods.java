@@ -21,7 +21,7 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-    private static final String BASE_URL = "http://ip.taobao.com/";
+    private static final String BASE_URL =  "http://ip.taobao.com/";
 
     private static final int DEFAULT_TIMEOUT = 5;
 
