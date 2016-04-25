@@ -1,5 +1,6 @@
 package com.medical.lenovo.lastframework.ui.adapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -7,6 +8,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.medical.lenovo.lastframework.R;
+import com.medical.lenovo.lastframework.base.BaseAcitivty;
 
 import java.util.List;
 
@@ -18,14 +20,14 @@ import java.util.List;
 public class FragmentTabAdapter implements RadioGroup.OnCheckedChangeListener{
     private List<Fragment> fragments; // 一个tab页面对应一个Fragment
     private RadioGroup rgs; // 用于切换tab
-    private FragmentActivity fragmentActivity; // Fragment所属的Activity
+    private BaseAcitivty fragmentActivity; // Fragment所属的Activity
     private int fragmentContentId; // Activity中所要被替换的区域的id
 
     private int currentTab; // 当前Tab页面索引
 
     private OnRgsExtraCheckedChangedListener onRgsExtraCheckedChangedListener; // 用于让调用者在切换tab时候增加新的功能
 
-    public FragmentTabAdapter(FragmentActivity fragmentActivity, List<Fragment> fragments, int fragmentContentId, RadioGroup rgs,int index) {
+    public FragmentTabAdapter(BaseAcitivty fragmentActivity, List<Fragment> fragments, int fragmentContentId, RadioGroup rgs,int index) {
         this.fragments = fragments;
         this.rgs = rgs;
         this.fragmentActivity = fragmentActivity;
