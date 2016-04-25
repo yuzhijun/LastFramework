@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.medical.lenovo.lastframework.base.BaseAcitivty;
 import com.medical.lenovo.lastframework.base.BaseSubscriber;
+import com.medical.lenovo.lastframework.base.SimpleActivity;
 import com.medical.lenovo.lastframework.event.UserEvent;
 import com.medical.lenovo.lastframework.eventbus.RxBus;
 import com.medical.lenovo.lastframework.eventbus.RxBusEx;
@@ -34,7 +35,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
-public class MainActivity extends BaseAcitivty implements SubscriberListener {
+public class MainActivity extends SimpleActivity implements SubscriberListener {
 
 
     private static final String BASE_URL = "http://ip.taobao.com/";
@@ -46,9 +47,8 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
     private Subscription rxSubscription;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void initView() {
+        super.initView();
         ButterKnife.bind(this);
 
 
@@ -61,6 +61,11 @@ public class MainActivity extends BaseAcitivty implements SubscriberListener {
 //        testEventBus1();
 //        RxBus.getDefault().post(new UserEvent(1, "yoyo"));
         testOverweight();
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_main;
     }
 
     public void _initView() {
