@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:id="@+id/tab_content"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+            android:background="#77557799" />
+
+        <!--<RadioGroup-->
+            <!--android:id="@+id/tabs_rg"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="55dip"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal" -->
+            <!--android:background="@drawable/main_radio_tab_bg"-->
+            <!-->-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/tab_rb_a"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1.0"-->
+                <!--android:background="@drawable/selector_tab_background"-->
+                <!--android:button="@null"-->
+                <!--android:checked="true"-->
+                <!--android:drawableTop="@drawable/toolbar_find_style"-->
+                <!--android:gravity="center"-->
+                <!--android:paddingTop="5dip"-->
+                <!--android:singleLine="true"-->
+                <!--android:text="@string/find_label_bar"-->
+                <!--android:textColor="@color/textview_color"-->
+                <!--android:textSize="12sp" />-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/tab_rb_b"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1.0"-->
+                <!--android:background="@drawable/selector_tab_background"-->
+                <!--android:button="@null"-->
+                <!--android:drawableTop="@drawable/toolbar_com_style"-->
+                <!--android:gravity="center"-->
+                <!--android:paddingTop="5dip"-->
+                <!--android:singleLine="true"-->
+                <!--android:text="@string/com_label_bar"-->
+                <!--android:textColor="@color/textview_color"-->
+                <!--android:textSize="12sp" />-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/tab_rb_c"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1.0"-->
+                <!--android:background="@drawable/selector_tab_background"-->
+                <!--android:button="@null"-->
+                <!--android:drawableTop="@drawable/toolbar_legou_style"-->
+                <!--android:gravity="center"-->
+                <!--android:paddingTop="5dip"-->
+                <!--android:singleLine="true"-->
+                <!--android:text="@string/legou_label_bar"-->
+                <!--android:textColor="@color/textview_color"-->
+                <!--android:textSize="12sp" />-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/tab_rb_d"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1.0"-->
+                <!--android:background="@drawable/selector_tab_background"-->
+                <!--android:button="@null"-->
+                <!--android:drawableTop="@drawable/toolbar_mine_style"-->
+                <!--android:gravity="center"-->
+                <!--android:paddingTop="5dip"-->
+                <!--android:singleLine="true"-->
+                <!--android:text="@string/mine_label_bar"-->
+                <!--android:textColor="@color/textview_color"-->
+                <!--android:textSize="12sp" />-->
+        <!--</RadioGroup>-->
+    </LinearLayout>
+
+</LinearLayout>

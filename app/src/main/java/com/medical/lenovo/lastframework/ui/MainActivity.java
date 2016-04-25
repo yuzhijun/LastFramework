@@ -1,8 +1,9 @@
-package com.medical.lenovo.lastframework;
+package com.medical.lenovo.lastframework.ui;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.medical.lenovo.lastframework.R;
 import com.medical.lenovo.lastframework.base.BaseAcitivty;
 import com.medical.lenovo.lastframework.base.BaseSubscriber;
 import com.medical.lenovo.lastframework.base.SimpleActivity;
